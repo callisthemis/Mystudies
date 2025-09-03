@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>My Studies — Προσωπικός Διαχειριστής Μαθημάτων</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>My Studies (προσωπικό)</h1>
+    <p class="subtitle">Πρόσθεσε μαθήματα, τροποποίησε βαθμούς &amp; δες άμεσα τον Μ.Ο. σου (αποθήκευση τοπικά).</p>
+  </header>
+
+  <main class="container">
+    <!-- Φόρμα προσθήκης μαθήματος -->
+    <section class="card">
+      <h2>Προσθήκη μαθήματος</h2>
+      <form id="add-form" autocomplete="off">
+        <label>
+          Μάθημα
+          <input id="nameInput" type="text" placeholder="π.χ. Γραμμική Άλγεβρα" required />
+        </label>
+        <label>
+          ECTS
+          <input id="ectsInput" type="number" min="0" max="60" step="0.5" placeholder="π.χ. 6" required />
+        </label>
+        <label>
+          Βαθμός
+          <input id="gradeInput" type="number" min="0" max="10" step="0.1" placeholder="0–10" required />
+        </label>
+        <button type="submit" class="btn primary">Προσθήκη</button>
+      </form>
+      <div class="tips">
+        <small>💡 Tip: Μπορείς να χρησιμοποιείς και κόμμα (,) για δεκαδικά. Enter = προσθήκη.</small>
+      </div>
+    </section>
+
+    <!-- Στατιστικά -->
+    <section class="stats-grid">
+      <div class="stat card">
+        <div class="stat-label">Μ.Ο. (ECTS-weighted)</div>
+        <div id="avgWeighted" class="stat-value">—</div>
+      </div>
+      <div class="stat card">
+        <div class="stat-label">Σύνολο ECTS</div>
+        <div id="totalEcts" class="stat-value">—</div>
+      </div>
+      <div class="stat card">
+        <div class="stat-label">Περασμένα / Σύνολο</div>
+        <div class="stat-value"><span id="passedCount">0</span> / <span id="totalCourses">0</span></div>
+      </div>
+    </section>
+
+    <!-- Πίνακας μαθημάτων -->
+    <section class="card">
+      <div class="table-header">
+        <h2>Μαθήματα</h2>
+        <div class="actions">
+          <button id="demoBtn" class="btn subtle">Φόρτωση παραδείγματος</button>
+          <button id="printBtn" class="btn">Εκτύπωση</button>
+          <button id="exportBtn" class="btn">Export (JSON)</button>
+          <label class="btn file-btn">
+            Import (JSON)
+            <input id="importFile" type="file" accept="application/json" />
+          </label>
+          <button id="clearBtn" class="btn danger">Καθαρισμός όλων</button>
+        </div>
+      </div>
+
+      <div class="table-wrapper">
+        <table id="coursesTable">
+          <thead>
+            <tr>
+              <th data-sort="name">Μάθημα</th>
+              <th data-sort="ects" class="num">ECTS</th>
+              <th data-sort="grade" class="num">Βαθμός</th>
+              <th class="center">Κατάσταση</th>
+              <th class="center">Ενέργειες</th>
+            </tr>
+          </thead>
+          <tbody id="coursesBody">
+            <!-- Δυναμικό περιεχόμενο -->
+          </tbody>
+        </table>
+      </div>
+      <p class="muted"><small>Οι αλλαγές αποθηκεύονται αυτόματα μόνο στη συσκευή σου (LocalStorage).</small></p>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <p>Φτιαγμένο για προσωπική οργάνωση σπουδών. Δεν συνδέεται με επίσημες πλατφόρμες.</p>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
